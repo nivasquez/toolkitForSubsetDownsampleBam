@@ -12,7 +12,7 @@ Nicholas Vasquez nivasquez@csumb.edu,
 Ibrahim Jabarkhel ibrahimjabarkhil747@gmail.com,
 Ash O'Farrell aofarrel@ucsc.edu
 
-# How to Run using the files in this repo as a template
+# How to Run 
 
 We used this link: https://bioinformatics-core-shared-training.github.io/docker-4-bioinformatics/ and https://dockstore.org/quick-start to learn how to install docker and dockstore.
 
