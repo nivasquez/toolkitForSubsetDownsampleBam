@@ -8,8 +8,8 @@ Please let me know if you have any questions about this toolkit! I used Windows 
 
 # Authors
 
-Nicholas Vasquez nivasquez@csumb.edu
-Ibrahim Jabarkhel ibrahimjabarkhil747@gmail.com
+Nicholas Vasquez nivasquez@csumb.edu,
+Ibrahim Jabarkhel ibrahimjabarkhil747@gmail.com,
 Ash O'Farrell aofarrel@ucsc.edu
 
 # How to Run using the files in this repo as a template
