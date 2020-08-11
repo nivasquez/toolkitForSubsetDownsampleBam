@@ -39,8 +39,7 @@ task toolkit {
 workflow toolkit_test {
   input {
     File inputBAMFile
-    File? inputBAMIndexFile
-    # Optional input to increase all disk sizes in case of outlier sample with strange size behavior
+    # Optional increase in disk size
     Int? increase_disk_size
   }
  
