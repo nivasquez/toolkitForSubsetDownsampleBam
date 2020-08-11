@@ -1,3 +1,3 @@
 {
-   "toolkit_test.inputBAMFile": "wgEncodeUwRepliSeqBjS1AlnRep2.bam"
+   "toolkit_test.inputBAMFile": "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeUwRepliSeq/wgEncodeUwRepliSeqBjS1AlnRep2.bam"
 }
