@@ -9,9 +9,9 @@ task toolkit {
     Float disk_size
   }
 
-   # String s = disk_size
-   # String string_before_decimal = sub(s, "\\..*", "")
-   # Int new_disk_size = string_before_decimal
+   String s = disk_size
+   String string_before_decimal = sub(s, "\\..*", "")
+   Int new_disk_size = string_before_decimal
 
   # command specifies what to run on command line   
   command {
@@ -27,7 +27,7 @@ task toolkit {
     docker: "quay.io/nivasquez/toolkit:latest"
     cpu: 1
     memory: "15 GB"
-    disks: "local-disk " + disk_size + " HDD"
+    disks: "local-disk " + new_disk_size + " HDD"
     continueOnReturnCode: true
   }
   meta {
