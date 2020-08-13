@@ -44,3 +44,8 @@ To test using the Dockstore CLI, make sure you have the weblink to the BAM file 
 ...and if it was a success, you should see an output that says something like "Workflow Succeeded" and you will see the path to where your new BAM file was downloaded right below it. On Mac OSX, the output file will usually be in a folder with a long alphanumeric name under `/private/var/folders/vp/`. **Unless you absolutely know what you're doing, do not delete files here; Mac OSX also puts system files in this area. A restart will clear the Cromwell output and temporary files in private/var/, clearing up the space it takes up, but also wiping your output folders. Move your output files if you will need them later.**
 
 If you run into a "corrupt jar file" error when using the Dockstore tool launch command, you may need to use a different OS; this error seems unique to Windows. This toolkit is confirmed to work on Mac OSX and should work on any similar UNIX-like operating system.
+
+## Running on Terra
+A full explanation of using Terra is outside the scope of this document, but you're encouraged to check out [Terra's online documentation](https://support.terra.bio/hc/en-us). Please note that Terra does not support inputs via http://, so you will need to either find an input via gs:// or upload your files directly to your Terra bucket.
+
+Running this pipeline on the provided file will take about five minutes on Terra. 
