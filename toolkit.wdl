@@ -23,7 +23,7 @@ task toolkit {
     docker: "quay.io/nivasquez/toolkit:latest"
     cpu: 1
     memory: "15 GB"
-    disks: "local-disk " + new_disk_size + " HDD"
+    disks: "local-disk " + disk_size + " HDD"
     continueOnReturnCode: true
   }
   meta {
