@@ -21,20 +21,26 @@ Stay organized by keeping all files you download from here in the same folder on
 ## First Steps
 1. Download the dockerfile from this repo and paste this to your terminal: 
 `docker build -t="toolkit" .` 
-"toolkit" can be replaced with a name of your choice. I prefer to use the name of the repo I learned how to make dockerfiles in, from the website quay.io.
+Yes, the period is required. "toolkit" can be replaced with a name of your choice. I prefer to use the name of the repo I learned how to make dockerfiles in, from the website quay.io.
 
-2. Type `docker images` into your terminal to confirm your image has been made
+2. Type `docker images` into your terminal to confirm your image has been made.
 
-3. Download the WDL file and replace the "docker:" part found in the `runtime{` section. Change it to the same name as the name of your Docker image. OPTIONAL: use `docker push (insert-link-to-pre-made-repository-here)` in your terminal to push the docker image to a code sharing site of your choice (make sure you already made the repository and it is under your name on the website (example: quay.io/nivasquez/toolkit)
+3. Download the WDL file and replace the `docker:` part found in the `runtime{` section. Change it to the same name as the name of your Docker image. OPTIONAL: use `docker push (insert-link-to-pre-made-repository-here)` in your terminal to push the docker image to a code sharing site of your choice -- make sure you already made the repository and it is under your name on the website (example: quay.io/nivasquez/toolkit)
 
 4. Download the JSON file. You have two options here:
 
-Download the file named "wgEncodeUwRepliSeqBjS1AlnRep2.bam" from https://hgdownload-test.gi.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeUwRepliSeq/release1/ and keep it in the same folder as all of the other files downloaded from here OR find/use your own .bam file. Make sure to provide the web link to it (gs://, http:// type links for example) and replace the .json file name with the new name/link of your bam file. 
+Download the file named "wgEncodeUwRepliSeqBjS1AlnRep2.bam" [from the UCSC genome broswer](https://hgdownload-test.gi.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeUwRepliSeq/release1/) and keep it in the same folder as all of the other files downloaded from here OR find/use your own .bam file. Make sure to provide the web link to it (gs://, http:// type links for example) and replace the .json file name with the new name/link of your bam file. 
 
 ## Running locally with Cromwell
-To test locally with Cromwell, make sure you have the latest version of Java. If you installed the Dockstore CLI, you should have the latest version of Java because it is required to use Dockstore. Download "cromwell-51.jar" from [the Broad Institute's cromwell repository](https://github.com/broadinstitute/cromwell/releases/tag/51). Put this new jar file in the same folder as everything else used from this tutorial. Run this command `java -jar cromwell.51-jar run (.wdl-file -name-here) -i (.json-file-name-here)` and if it was a success, you should see an output that says something like "Workflow Succeeded" and you will see the path to where your new BAM file was downloaded right below it. 
+By default, Cromwell does not support gs:// URIs and sometimes has issues with https://; if you cannot use Dockstore, your best bet is to run this on a local file.  
+
+To test locally with Cromwell, make sure you have the latest version of Java. If you installed the Dockstore CLI, you should have the latest version of Java because it is required to use Dockstore. Download "cromwell-51.jar" from [the Broad Institute's Cromwell repository](https://github.com/broadinstitute/cromwell/releases/tag/51). Put this new jar file in the same folder as everything else used from this tutorial. Run this command: 
+`java -jar cromwell.51-jar run (.wdl-file -name-here) -i (.json-file-name-here)` 
+...and if it was a success, you should eventually see an output that says something like "Workflow Succeeded" and you will see the path to where your new BAM file was downloaded right below it.
 
 ## Running locally with the Dockstore CLI
-To test using the Dockstore CLI, make sure you have the weblink to the BAM file in your JSON file. You can use BAM file links that begin with gs:// or ftp:// have worked for us. If you get an error with gs:// or ftp:// links, try using the command `dockstore plugin download` to update your Dockstore plugins. Use the command `dockstore tool launch --local-entry (.wdl-file-name-here) --json (.json-file-name-here)` and if it was a success, you should see an output that says something like "Workflow Succeeded" and you will see the path to where your new BAM file was downloaded right below it.
+To test using the Dockstore CLI, make sure you have the weblink to the BAM file in your JSON file. You can use BAM file links that begin with gs:// or ftp://. If you get an error with gs:// or ftp:// links, try using the command `dockstore plugin download` to update your Dockstore plugins. Use the command to run the workflow:
+`dockstore tool launch --local-entry (.wdl-file-name-here) --json (.json-file-name-here)` 
+...and if it was a success, you should see an output that says something like "Workflow Succeeded" and you will see the path to where your new BAM file was downloaded right below it. On Mac OSX, the output file will usually be in a folder with a long alphanumeric name under `/private/var/folders/vp/`. **Unless you absolutely know what you're doing, do not delete files here; Mac OSX also puts system files in this area. A restart will clear the Cromwell output and temporary files in private/var/, clearing up the space it takes up, but also wiping your output folders. Move your output files if you will need them later.**
 
-If you run into a "corrupt jar file" error when using the dockstore tool launch command, you may need to use a different OS; this error seems unique to Windows. This toolkit is confirmed to work on Mac OSX and should work on any similar UNIX-like operating system.
+If you run into a "corrupt jar file" error when using the Dockstore tool launch command, you may need to use a different OS; this error seems unique to Windows. This toolkit is confirmed to work on Mac OSX and should work on any similar UNIX-like operating system.
