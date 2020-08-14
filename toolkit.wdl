@@ -6,12 +6,8 @@ task toolkit {
   input {
     File inputBAMFile
     String inputFileName
-    Float disk_size
+    Int disk_size
   }
-
-   String s = disk_size
-   String string_before_decimal = sub(s, "\\..*", "")
-   Int new_disk_size = string_before_decimal
 
   # command specifies what to run on command line   
   command {
@@ -27,7 +23,7 @@ task toolkit {
     docker: "quay.io/nivasquez/toolkit:latest"
     cpu: 1
     memory: "15 GB"
-    disks: "local-disk " + new_disk_size + " HDD"
+    disks: "local-disk " + disk_size + " HDD"
     continueOnReturnCode: true
   }
   meta {
@@ -47,7 +43,7 @@ workflow toolkit_test {
   Int additional_disk = select_first([increase_disk_size, 20])
 
   # Get the size of the standard inputBAM file 
-  Float bam_size = size(inputBAMFile, "GB") 
+  Int bam_size = ceil(size(inputBAMFile, "GB")) 
 
   String inputFileName = basename("${inputBAMFile}")
 
